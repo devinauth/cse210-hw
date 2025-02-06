@@ -1,43 +1,29 @@
 using System;
+using System.Threading;
 
-public class Activity
+public abstract class Activity
 {
-    private string _activityName;
-    private string _activityDescription;
-    private int _duration;
+    protected string Name { get; }
+    protected string Description { get; }
+    protected int Duration { get; }
 
-    public Activity(string activityName, string activityDescription, int duration)
+    protected Activity(string name, string description, int duration)
     {
-        _activityName = activityName;
-        _activityDescription = activityDescription;
-        _duration = duration;
+        Name = name;
+        Description = description;
+        Duration = duration;
     }
 
-    public virtual void StartActivity()
+    public void StartActivity()
     {
-        Console.WriteLine($"Starting {_activityName} activity: {_activityDescription}");
-        Console.WriteLine($"Duration: {_duration} seconds.");
-        Console.WriteLine("Prepare to begin...");
-        Pause(3);  // Pause before starting
-    }
-
-    public virtual void EndActivity()
-    {
+        Console.WriteLine($"\nStarting {Name} Activity: {Description}\nDuration: {Duration} seconds.");
+        Pause(3);
+        Run();
         Console.WriteLine("Well done! You've completed the activity.");
-        Pause(2);  // Pause before ending
-        Console.WriteLine($"You spent {_duration} seconds on this activity.");
-        Pause(3);  // Final pause
+        Pause(2);
     }
 
-    protected void Pause(int seconds)
-    {
-        for (int i = 0; i < seconds; i++)
-        {
-            Console.Write(".");
-            System.Threading.Thread.Sleep(1000);  // 1-second pause
-        }
-        Console.WriteLine();
-    }
+    protected abstract void Run();
 
-    public int Duration { get { return _duration; } }
+    protected void Pause(int seconds) => Thread.Sleep(seconds * 1000);
 }

@@ -5,33 +5,33 @@ class Program
     static void Main()
     {
         Console.WriteLine("Welcome to the Mindfulness Program by Devi Nauth!");
-        Console.WriteLine("Please select an activity:");
-        Console.WriteLine("1. Breathing");
-        Console.WriteLine("2. Reflection");
-        Console.WriteLine("3. Listing");
-
+        Console.WriteLine("1. Breathing\n2. Reflection\n3. Listing");
+        Console.Write("Select an activity: ");
+        
         string choice = Console.ReadLine();
         Console.Write("Enter duration in seconds: ");
-        int duration = Convert.ToInt32(Console.ReadLine());
 
-        Activity activity = null;
-
-        switch (choice)
+        if (!int.TryParse(Console.ReadLine(), out int duration) || duration <= 0)
         {
-            case "1":
-                activity = new BreathingActivity(duration);
-                break;
-            case "2":
-                activity = new ReflectionActivity(duration);
-                break;
-            case "3":
-                activity = new ListingActivity(duration);
-                break;
-            default:
-                Console.WriteLine("Invalid choice.");
-                return;
+            Console.WriteLine("Invalid duration. Please enter a valid number.");
+            return;
+        }
+
+        Activity activity = choice switch
+        {
+            "1" => new BreathingActivity(duration),
+            "2" => new ReflectionActivity(duration),
+            "3" => new ListingActivity(duration),
+            _ => null
+        };
+
+        if (activity == null)
+        {
+            Console.WriteLine("Invalid choice.");
+            return;
         }
 
         activity.StartActivity();
     }
 }
+

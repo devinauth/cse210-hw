@@ -2,41 +2,30 @@ using System;
 
 public class ReflectionActivity : Activity
 {
-    private string[] reflectionPrompts = {
-        "Think of a time when you stood up for someone else.",
-        "Think of a time when you did something really difficult.",
-        "Think of a time when you helped someone in need.",
-        "Think of a time when you did something truly selfless."
-    };
-
-    private string[] reflectionQuestions = {
-        "Why was this experience meaningful to you?",
-        "Have you ever done anything like this before?",
-        "How did you get started?",
-        "How did you feel when it was complete?",
-        "What made this time different than other times when you were not as successful?",
-        "What is your favorite thing about this experience?",
-        "What could you learn from this experience that applies to other situations?",
-        "What did you learn about yourself through this experience?",
-        "How can you keep this experience in mind in the future?"
-    };
-
-    public ReflectionActivity(int duration) : base("Reflection", "This activity will help you reflect on times in your life when you have shown strength and resilience.", duration) {}
-
-    public override void StartActivity()
+    private static readonly string[] Prompts =
     {
-        base.StartActivity();
+        "Think of a time when you stood up for someone.",
+        "Think of a time when you did something difficult.",
+        "Think of a time when you helped someone in need."
+    };
 
-        Random random = new Random();
-        string prompt = reflectionPrompts[random.Next(reflectionPrompts.Length)];
-        Console.WriteLine($"Reflection prompt: {prompt}");
-        
-        foreach (var question in reflectionQuestions)
+    private static readonly string[] Questions =
+    {
+        "Why was this meaningful to you?",
+        "How did you feel when it was complete?",
+        "What did you learn from this experience?",
+        "How can you apply this in the future?"
+    };
+
+    public ReflectionActivity(int duration) : base("Reflection", "Reflect on meaningful moments in your life.", duration) {}
+
+    protected override void Run()
+    {
+        Console.WriteLine($"Prompt: {Prompts[new Random().Next(Prompts.Length)]}");
+        foreach (var question in Questions)
         {
             Console.WriteLine(question);
-            Pause(3); // Wait for user reflection
+            Pause(3);
         }
-
-        EndActivity();
     }
 }
