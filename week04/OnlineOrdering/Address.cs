@@ -1,30 +1,20 @@
 // Address.cs
 // Developed by: Devi Nauth
 
-using System;
-
 public class Address
 {
-    private string streetAddress;
-    private string city;
-    private string stateOrProvince;
-    private string country;
+    private string Street, City, State, Country;
 
-    public Address(string streetAddress, string city, string stateOrProvince, string country)
+    public Address(string street, string city, string state, string country)
     {
-        this.streetAddress = streetAddress;
-        this.city = city;
-        this.stateOrProvince = stateOrProvince;
-        this.country = country;
+        Street = street;
+        City = city;
+        State = state;
+        Country = country;
     }
 
-    public bool IsInUSA()
-    {
-        return country == "USA";
-    }
+    public bool IsInUSA() => Country == "USA";
 
-    public string GetFullAddress()
-    {
-        return $"{streetAddress}\n{city}, {stateOrProvince}\n{country}";
-    }
+    public string GetFullAddress() => $"{Street}, {City}, {State}, {Country}";
 }
+

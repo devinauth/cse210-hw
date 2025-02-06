@@ -1,13 +1,17 @@
-using System;
-
 public class Comment
 {
-    public string CommenterName { get; set; }
-    public string Text { get; set; }
+    public string CommenterName { get; }
+    public string Text { get; }
 
     public Comment(string commenterName, string text)
     {
         CommenterName = commenterName;
         Text = text;
     }
+
+    public override string ToString()
+    {
+        return $"{CommenterName}: {Text}";
+    }
 }
+

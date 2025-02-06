@@ -1,31 +1,17 @@
+
 // Customer.cs
 // Developed by: Devi Nauth
 
-using System;
-
 public class Customer
 {
-    private string name;
-    private Address address;
+    public string Name { get; }
+    public Address Address { get; }
 
     public Customer(string name, Address address)
     {
-        this.name = name;
-        this.address = address;
+        Name = name;
+        Address = address;
     }
 
-    public bool IsInUSA()
-    {
-        return address.IsInUSA();
-    }
-
-    public string GetName()
-    {
-        return name;
-    }
-
-    public Address GetAddress()
-    {
-        return address;
-    }
+    public bool IsInUSA() => Address.IsInUSA();
 }

@@ -3,21 +3,27 @@ using System.Collections.Generic;
 
 public class Video
 {
-    public string Title { get; set; }
-    public string Author { get; set; }
-    public int Length { get; set; } // in seconds
-    public List<Comment> Comments { get; set; }
+    public string Title { get; }
+    public string Author { get; }
+    public int Length { get; } // in seconds
+    public List<Comment> Comments { get; }
 
-    public Video(string title, string author, int length)
+    public Video(string title, string author, int length, List<Comment> comments = null)
     {
         Title = title;
         Author = author;
         Length = length;
-        Comments = new List<Comment>();
+        Comments = comments ?? new List<Comment>();
     }
 
-    public int GetNumberOfComments()
+    public override string ToString()
     {
-        return Comments.Count;
+        string videoInfo = $"Title: {Title}\nAuthor: {Author}\nLength: {Length} seconds\nComments ({Comments.Count}):";
+        foreach (var comment in Comments)
+        {
+            videoInfo += $"\n- {comment}";
+        }
+        return videoInfo + "\n";
     }
 }
+

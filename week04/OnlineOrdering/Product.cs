@@ -1,35 +1,21 @@
 // Product.cs
 // Developed by: Devi Nauth
 
-using System;
-
 public class Product
 {
-    private string name;
-    private string productId;
-    private double price;
-    private int quantity;
+    public string Name { get; }
+    public string ProductId { get; }
+    public double Price { get; }
+    public int Quantity { get; }
 
     public Product(string name, string productId, double price, int quantity)
     {
-        this.name = name;
-        this.productId = productId;
-        this.price = price;
-        this.quantity = quantity;
+        Name = name;
+        ProductId = productId;
+        Price = price;
+        Quantity = quantity;
     }
 
-    public double GetTotalCost()
-    {
-        return price * quantity;
-    }
-
-    public string GetProductId()
-    {
-        return productId;
-    }
-
-    public string GetName()
-    {
-        return name;
-    }
+    public double GetTotalCost() => Price * Quantity;
 }
+
